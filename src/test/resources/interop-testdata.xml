@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connector name="Mailchimp">
+    <properties>
+        <connectivity-support>false</connectivity-support>
+        <OAuth-authentication>false</OAuth-authentication>
+        <metadata>static</metadata>
+        <datasense-enabled>true</datasense-enabled>
+        <transformer>false</transformer>
+    </properties>
+    <global-config credentialsFile="">
+        <config name="config">
+            <attributes>
+                <attribute name="name" use="required" caption="Name" group="Basic Settings" type="name" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="url" use="optional" caption="Url" group="General" type="string" javaType="java.lang.String" default="https://us13.api.mailchimp.com/3.0" category="General"></attribute>
+                <attribute name="authorization" use="optional" caption="Authorization" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+        </config>
+    </global-config>
+    <message-processors>
+        <processor name="getCampaigns" xmlName="get-campaigns" caption="Get campaigns">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="apiKey" use="required" caption="Api Key" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="count" use="required" caption="Count" group="General" type="integer" javaType="java.lang.Integer" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="deleteCampaign" xmlName="delete-campaign" caption="Delete campaign">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="apiKey" use="required" caption="Api Key" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="compaignId" use="required" caption="Compaign Id" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="getCampaignById" xmlName="get-campaign-by-id" caption="Get campaign by id">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="apiKey" use="required" caption="Api Key" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="compaignId" use="required" caption="Compaign Id" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="getAuthorizedApps" xmlName="get-authorized-apps" caption="Get authorized apps">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="apiKey" use="required" caption="Api Key" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="count" use="optional" caption="Count" group="General" type="integer" javaType="java.lang.Integer" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="getLists" xmlName="get-lists" caption="Get lists">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="apiKey" use="required" caption="Api Key" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="count" use="optional" caption="Count" group="General" type="integer" javaType="java.lang.Integer" category="General"></attribute>
+                <attribute name="email" use="optional" caption="Email" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="getListById" xmlName="get-list-by-id" caption="Get list by id">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="apiKey" use="required" caption="Api Key" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="listId" use="required" caption="List Id" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="getTemplatesList" xmlName="get-templates-list" caption="Get templates list">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="apiKey" use="required" caption="Api Key" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="count" use="optional" caption="Count" group="General" type="integer" javaType="java.lang.Integer" category="General"></attribute>
+                <attribute name="createdBy" use="optional" caption="Created By" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="getTemplateById" xmlName="get-template-by-id" caption="Get template by id">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="apiKey" use="required" caption="Api Key" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="templateId" use="required" caption="Template Id" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="getAutomations" xmlName="get-automations" caption="Get automations">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="apikey" use="required" caption="Apikey" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+    </message-processors>
+</connector>

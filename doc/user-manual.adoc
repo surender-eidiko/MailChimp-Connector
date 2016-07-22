@@ -1,0 +1,236 @@
+
+= MailChimp Connector
+:keywords: MailChimp
+
+The MailChimp connector facilitates connections between Mule integration and MailChimp applications. The MailChimp connector  provides to see the list of campaigns,subscribers,templates and reports etc.
+
+*Release Notes:* link:/release-notes/MailChimpReleaseNotes.adoc[Link to Release Notes]
+
+////
+Note: existing MuleSoft documentation should be copied from right-hand column of link:https://github.com/mulesoft/mulesoft-docs/blob/master/links.csv. Links should always follow "link:"
+////
+
+---
+
+== Contents:
+
+:toc:
+---
+
+== Introduction
+
+The MailChimp connector facilitates connections between Mule integration and MailChimp applications. The MailChimp connector  provides to see the list of campaigns,subscribers,templates and reports etc. +
+
+MailChimp Connector Operations +
+
+1. Get Campaigns +
+This operation is used to list all the campaign details to which the authenticated user belongs. +
+2. Get Campaign by Id +
+This operation is used to show details for a campaign by Campaign ID.  +
+3. Delete Campaign by Id +
+This operation is used to the Campaign by campaign id. +
+4. Get Authorized Apps +
+This operation is used to list all the authorized apps. +
+5. Get Lists +
+This operation is used to list the subscribers list. +
+6. Get Lists by Id +
+This operation used to get the subscribers list by id.  +
+7. Get Template List +
+This operation is used to list the templates. + 
+8. Get Template by Id +
+This operation is used to show details for a for a template by unique template id. +
+9. Get Automations +
+This operation is used to list the automations +
+
+
+=== Prerequisites
+
+ This document assumes that you are familiar with Mule,Anypoint connectors and the Anypoint Studio Interface. To increase your familiarity with Studio, consider completing one or more Anypoint Studio Tutorials. Further, this page assumes that you have a basic understanding of Mule flows and Mule Global Elements.
+This document describes implementation examples within the context of Anypoint Studio, Mule ESB’s graphical user interface, and, also includes configuration details for doing the same in the XML Editor.
+
+=== Requirements
+
+•	Windows 7 64-bit +
+•	Mule Soft Software - +
+          Anypoint Studio - Tooling for Mule ESB. +
+          Version: 5.3.2. +
+          Build Id: 201510191606. +
+
+•	Install JDK 7 for DevKit 3.6 or 3.7. +
+
+
+=== Compatibility Matrix
+The MailChimp Connector is compatible with:
+
+Application/Service	     Version
+Mule Run-time	3.7.0 or later
+
+
+
+---
+
+== Installing and Configuring
+
+=== Installing
+
+You can install a connector in Anypoint Studio using the instructions in Installing a Connector from Anypoint Exchange
+As we can see in the image below the MailChimp Connector is available in connectors palette.
+image::palette.jpg[]
+
+=== Configuring
+To use the MailChimp Connector in your Mule application, you must configure:
+•	A global MailChimp element to be used by all the MailChimp connectors in the application (read more about global elements in Mule).
+•	Parameters of each MailChimp Connector instance in the flow.
+
+Follow these steps to create a global MailChimp configuration in a Mule application:
+    
+1.	 Click the Global Elements tab at the base of the canvas, then click Create
+2.	 In the Choose Global Type wizard, use the filter to locate and select,
+      MailChimp configuration then click OK.
+3.	Configure the parameters according to the instructions shown in the below image.
+image::configuration.jpg[]
+|===
+|Field	|Description
+
+|Name	|Enter a name for the configuration so it can be referenced later 
+
+|Authorization       	|Authorization Token for connecting and loggin into MailChimp
+
+
+|URL		|https://us13.api.mailchimp.com/3.0
+|===
+
+
+4.Click OK to save the global connector configurations. +
+5.Return to the Message Flow tab in Studio. +
+
+---
+
+
+
+== Using This Connector
+
+Follow these steps to configure the parameters of a MailChimp Connector in the flow:   
+
+1.	Drag the MailChimp Connector onto the canvas, then select it to open the properties editor. +
+2.	Configure the connector’s parameters according to the table below. +
+|===
+|Field	|Description
+|Display Name	|Enter a unique label for the connector in your application.
+|Connector Configuration	|Connect to a global element linked to this connector. Global elements encapsulate reusable data about the connection to the target resource or service. Select the global MailChimp connector element that you created in the previous steps.
+|Operation	|Select the action this component must perform:
+ Get Campaigns,Get Campaign by Id,Delete Campaign by Id,Get Authorized Apps,Get Lists,Get Lists by Id,Get Template List,Get Template by Id,Get Automations
+ General	|Reference or expression: Select this option to define the parameters based on expression.
+Define Attributes: Select this option to define the values manually.
+|===
+
+3.	Click the blank space on the canvas to save your configurations. +
+  
+
+
+
+
+---
+
+== Example Use Case
+In this example flow, We are getting list of campaigns in a account where you can know the campaignid,campaign name etc.
+===  Anypoint Studio Visual Editor | XML Editor
+
+Explain how to create this case with  Anypoint Studio  visual editor and XML editor +
+
+
+[tab,title="Studio Visual Editor"]
+....
+[tab content goes here]
+Create a new project by clicking New > Mule Project >Project Name: MailchimpGetCampaigns.
+1. Drag an HTTP connector into sparkroomcreateapplication flow. Open the connector’s properties editor.
+2. Click on the + icon shown in the image below.
+image::httpProperties.jpg[]
+3. The Global Element Properties window of HTTP Listener Configuration opens. Enter 8081 for Port as shown below and click on 'Ok'.
+image::httpGlobalProperties.jpg[]
+4. The new flow is now reachable through the path http://localhost:8081 from the local system.
+5. Drag MailChimp connector into sparkroomcreateapplication flow.
+6. Configure the MailChimp connector according to the table below.
+
+|===
+|Field	|Description
+|Display Name	|MailChimp.
+|Connector Configuration	|select the global configuration created earlier.
+|Operation	|GetCampaigns
+ |General	|Select Define Attributes:
+|			|Token  | OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80
+|			|count  | None
+			|apikey  | None
+|===
+
+7. Drag a Object to Json transformer to the flow.
+8. Save it.
+
+
+[tab,title="XML Editor"]
+....
+1. Add a MailChimp:config global element to your project, then configure its attributes according to the table below (see code below for a complete sample).+
+<mailchimp:config name="Mailchimp__Configuration" doc:name="Mailchimp: Configuration" authorization="OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80"/>
+
+|===
+|Attribute|Value
+|name|Mailchimp__Configuration
+|authorization|<Auth Token>
+|===
+2. Add a http:listener-config global element to you project +
+
+3. Create a Mule flow with an HTTP endpoint, configuring the endpoint according to the table below (see code below for a complete sample). +
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+	
+|===
+|Attribute|Value
+|name|HTTP_Listener_Configuration
+|host|0.0.0.0
+|port|8081
+|===
+
+4. Add a MailChimpConnector to your muleflow after the http endpoint according to the table below
+		<mailchimp:get-authorized-apps config-ref="Mailchimp__Configuration" token="OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80" doc:name="Mailchimp"/>
+|===
+|Attribute|Value
+|config-ref|Mailchimp__Configuration
+|operation|GetCampaigns
+|Token  | OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80
+|===
+
+5. Add a Object to Json transformer to your muleflow after the MailChimpConnector
+ <json:object-to-json-transformer doc:name="Object to JSON"/>
+....
+
+
+=== Code Example
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mailchimp="http://www.mulesoft.org/schema/mule/mailchimp" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/mailchimp http://www.mulesoft.org/schema/mule/mailchimp/current/mule-mailchimp.xsd">
+    <mailchimp:config name="Mailchimp__Configuration" doc:name="Mailchimp: Configuration"/>
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+    <flow name="mailchimp-testFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP"/>
+        <mailchimp:get-campaigns config-ref="Mailchimp__Configuration" token="OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80" doc:name="Mailchimp" />
+        <response>
+            <json:object-to-json-transformer doc:name="Object to JSON"/>
+        </response>
+    </flow>
+</mule>
+
+
+
+---
+
+=== See Also
+
+* Access the link:/release_notes.adoc
+
