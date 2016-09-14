@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.mule.modules.mailchimp.bean.AuthorizedAppsGetResponse;
 import org.mule.modules.mailchimp.bean.AutomationListGetResponse;
 import org.mule.modules.mailchimp.bean.CampaignsGetResponse;
@@ -68,7 +67,7 @@ public class MailchimpClient {
 	  public WebResource getUrl(String apiKey)
 	  {
 		  
-		  if(apiKey==null || apiKey.equals(""))
+		  if(apiKey==null || "".equals(apiKey))
 		  {
 			  return this.client.resource("https://"+getConnector().getConfig().getApiKey().substring(getConnector().getConfig().getApiKey().lastIndexOf("-") + 1)+".api.mailchimp.com/3.0");
 
@@ -105,51 +104,6 @@ public class MailchimpClient {
 	  }
 
 	  /**
-  	 * Post data.
-  	 *
-  	 * @param request the request
-  	 * @param webResource the web resource
-  	 * @param returnClass the return class
-  	 * @param token the token
-  	 * @return the object
-  	 */
-  	private Object postData(Object request, WebResource webResource,
-	    Class<?> returnClass, String token) {
-	    WebResource.Builder builder = addHeader(webResource, token);
-	    builder.type(MediaType.APPLICATION_JSON);
-	    ObjectMapper mapper = new ObjectMapper();
-	    String input = convertObjectToString(request, mapper);
-	   
-	    ClientResponse clientResponse = builder.post(ClientResponse.class,
-	      input);
-	 
-	    return buildResponseObject(returnClass, clientResponse);
-	  }
-
-	  /**
-  	 * Put data.
-  	 *
-  	 * @param request the request
-  	 * @param webResource the web resource
-  	 * @param returnClass the return class
-  	 * @param token the token
-  	 * @return the object
-  	 */
-  	private Object putData(Object request, WebResource webResource,
-	    Class<?> returnClass, String token) {
-	    WebResource.Builder builder = addHeader(webResource, token);
-	    builder.type(MediaType.APPLICATION_JSON);
-	    ObjectMapper mapper = new ObjectMapper();
-	    String input = convertObjectToString(request, mapper);
-	    
-	    ClientResponse clientResponse = builder
-	      .put(ClientResponse.class, input);
-	    
-
-	    return buildResponseObject(returnClass, clientResponse);
-	  }
-
-	  /**
   	 * Delete data.
   	 *
   	 * @param webResource the web resource
@@ -172,10 +126,11 @@ public class MailchimpClient {
   	private WebResource.Builder addHeader(WebResource webResource, String token) {
 		    WebResource.Builder builder = webResource
 		      .accept(MediaType.APPLICATION_JSON);
-		    if(token == null)
-		    	token= connector.getConfig().getAuthorization();
-		    builder.header("Authorization", token);
-		    System.out.println("*************************************"+builder);
+		    String authToken = null;
+			if(token == null)
+		    	authToken = connector.getConfig().getAuthorization();
+		    builder.header("Authorization", authToken);
+		    log.info("*************************************"+builder);
 		    return builder;
 		  }
 
@@ -223,26 +178,6 @@ public class MailchimpClient {
 	  
 	    return statusResponse;
 	   
-	  }
-
-	  /**
-  	 * Convert object to string.
-  	 *
-  	 * @param request the request
-  	 * @param mapper the mapper
-  	 * @return the string
-  	 */
-  	private String convertObjectToString(Object request, ObjectMapper mapper) {
-	    String input = "";
-
-	    try {
-	      input = mapper.writeValueAsString(request);
-
-	    } catch (Exception ex) {
-	      log.log(Level.SEVERE, "Error", ex);
-	    }
-	    log.info("Input String = " + input);
-	    return input;
 	  }
 
 	  /**
@@ -315,7 +250,7 @@ public class MailchimpClient {
 	public CampaignsGetResponse getCampaigns(String token,String apiKey, Integer count) {
 		// TODO Auto-generated method stub
 	WebResource webResource = getUrl(apiKey).path("campaigns");
-    	System.out.println("webresource*************************************"+webResource);
+    	log.info("webresource*************************************"+webResource);
    	 MultivaluedMap<String, String> queryParams = new MultivaluedMapImpl();
    	    if (count != null) {
    	      queryParams.add("count", String.valueOf(count));

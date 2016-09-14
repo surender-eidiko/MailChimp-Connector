@@ -26,7 +26,6 @@ import org.mule.modules.mailchimp.config.ConnectorConfig;
  * The Class MailchimpConnector.
  */
 @Connector(name="mailchimp", friendlyName="Mailchimp")
-@MetaDataScope( DataSenseResolver.class )
 public class MailchimpConnector {
 
     /** The config. */
