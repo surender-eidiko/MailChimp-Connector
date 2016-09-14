@@ -4,12 +4,11 @@
 package org.mule.modules.mailchimp;
 
 
-import org.mule.api.annotations.param.Optional;
 import org.mule.api.annotations.Config;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.lifecycle.Start;
-import org.mule.api.annotations.MetaDataScope;
+import org.mule.api.annotations.param.Optional;
 import org.mule.modules.mailchimp.bean.AuthorizedAppsGetResponse;
 import org.mule.modules.mailchimp.bean.AutomationListGetResponse;
 import org.mule.modules.mailchimp.bean.CampaignsGetResponse;
@@ -21,7 +20,6 @@ import org.mule.modules.mailchimp.bean.TemplateGetResponse;
 import org.mule.modules.mailchimp.bean.TemplateListGetResponse;
 import org.mule.modules.mailchimp.config.ConnectorConfig;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MailchimpConnector.
  */

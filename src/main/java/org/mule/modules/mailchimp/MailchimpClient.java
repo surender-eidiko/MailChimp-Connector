@@ -28,7 +28,6 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MailchimpClient.
  */
@@ -248,7 +247,6 @@ public class MailchimpClient {
 	 * @return the campaigns
 	 */
 	public CampaignsGetResponse getCampaigns(String token,String apiKey, Integer count) {
-		// TODO Auto-generated method stub
 	WebResource webResource = getUrl(apiKey).path("campaigns");
     	log.info("webresource*************************************"+webResource);
    	 MultivaluedMap<String, String> queryParams = new MultivaluedMapImpl();
@@ -270,7 +268,6 @@ public class MailchimpClient {
 	 * @return the status response
 	 */
 	public StatusResponse deleteCampaign(String token,String apiKey, String compaignId) {
-		// TODO Auto-generated method stub
 		  WebResource webResource = getUrl(apiKey).path("campaigns").path(compaignId);
 		  log.info("Hitting... "+webResource.toString());
 		  return (StatusResponse) deleteData(webResource,token);
@@ -325,7 +322,6 @@ public class MailchimpClient {
 	 */
 	public AuthorizedAppsGetResponse getAuthorizedApps(String token,String apiKey,
 			Integer count) {
-		// TODO Auto-generated method stub
 		WebResource webResource = getUrl(apiKey).path("authorized-apps");
 
 		 MultivaluedMap<String, String> queryParams = new MultivaluedMapImpl();
@@ -393,7 +389,6 @@ public class MailchimpClient {
 	 * @return the list by id
 	 */
 	public ListByIdGetResponse getListById(String token,String apiKey, String listId) {
-		// TODO Auto-generated method stub
 		WebResource webResource = getUrl(apiKey).path("lists").path(listId);
 
 		return (ListByIdGetResponse) getData(webResource,
@@ -482,7 +477,6 @@ public class MailchimpClient {
 	 * @return the automation list
 	 */
 	public AutomationListGetResponse getAutomationList(String token,String apikey) {
-		// TODO Auto-generated method stub
 		WebResource webResource = getUrl(apikey).path("automations");
 
 	   	   
