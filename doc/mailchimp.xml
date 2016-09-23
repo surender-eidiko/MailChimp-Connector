@@ -1,0 +1,47 @@
+<!-- BEGIN_INCLUDE(new-relic:get-list-users) -->
+	<new-relic:get-list-users config-ref="NewRelic__Configuration"   doc:name="NewRelic" api_key="50d21105110edbed5bc2f7c147ec2b409397312a154012d"/>
+<!-- END_INCLUDE(new-relic:get-list-users) -->
+
+<!-- BEGIN_INCLUDE(mailchimp:get-campaigns) -->
+<mailchimp:get-campaigns config-ref="Mailchimp__Configuration1" apiKey="apikey f8c7587b3c257ffe76a3f7724bf42a70-us13" count="1" doc:name="Mailchimp"/>
+<!-- END_INCLUDE(mailchimp:get-campaigns) --> 
+
+<!-- BEGIN_INCLUDE(mailchimp:get-authorized-apps) -->
+<mailchimp:get-authorized-apps config-ref="Mailchimp__Configuration1" apiKey="apikey f8c7587b3c257ffe76a3f7724bf42a70-us13" count="1" doc:name="Mailchimp"/>
+<!-- END_INCLUDE(mailchimp:get-authorized-apps) -->
+
+<!-- BEGIN_INCLUDE(mailchimp:get-automations) -->
+<mailchimp:get-automations config-ref="Mailchimp__Configuration1"   doc:name="Mailchimp" apikey="api f8c7587b3c257ffe76a3f7724bf42a70-us13"/>
+<!-- END_INCLUDE(mailchimp:get-automations) -->
+
+<!-- BEGIN_INCLUDE(mailchimp:get-campaign-by-id) -->
+<mailchimp:get-campaign-by-id config-ref="Mailchimp__Configuration1"   doc:name="Mailchimp" apiKey="api f8c7587b3c257ffe76a3f7724bf42a70-us13" compaignId="69930c6127"/>
+<!-- END_INCLUDE(mailchimp:get-campaign-by-id) -->
+
+<!-- BEGIN_INCLUDE(mailchimp:get-lists) -->
+<mailchimp:get-lists config-ref="Mailchimp__Configuration1"   doc:name="Mailchimp" apiKey="api f8c7587b3c257ffe76a3f7724bf42a70-us13" />
+<!-- END_INCLUDE(mailchimp:get-lists) -->
+
+<!-- BEGIN_INCLUDE(mailchimp:get-list-by-id) -->
+<mailchimp:get-list-by-id config-ref="Mailchimp__Configuration1"   doc:name="Mailchimp" apiKey="api f8c7587b3c257ffe76a3f7724bf42a70-us13" listId="ad3e5d7ad3"/>
+<!-- END_INCLUDE(mailchimp:get-list-by-id) -->
+
+
+<!-- BEGIN_INCLUDE(mailchimp:get-templates-list) -->
+<mailchimp:get-templates-list config-ref="Mailchimp__Configuration1"   doc:name="Mailchimp" apiKey="api f8c7587b3c257ffe76a3f7724bf42a70-us13" />
+<!-- END_INCLUDE(mailchimp:get-templates-list) -->
+
+
+<!-- BEGIN_INCLUDE(mailchimp:get-template-by-id) -->
+<mailchimp:get-template-by-id config-ref="Mailchimp__Configuration1"   doc:name="Mailchimp" apiKey="api f8c7587b3c257ffe76a3f7724bf42a70-us13" templateId="2000096"/>
+<!-- END_INCLUDE(mailchimp:get-template-by-id) -->
+   
+
+       
+
+
+        
+
+
+    
+

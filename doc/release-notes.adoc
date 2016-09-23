@@ -10,7 +10,7 @@ The MailChimp connector facilitates connections between Mule integration and Mai
 
 The MailChimp software will Manage Your Email Database And Marketing In One Platform.
 
-*Guide:* <Connector_Guide_Link>
+*Guide:* link:/mailchimp-connector/doc/user-manual.adoc[Link to User Manual]
 ////
 Points to the docs.mulesoft pages for documentation on the functional aspects of the connector. e.g.: link:/mule-user-guide/v/3.7/microsoft-sharepoint-2013-connector[Microsoft SharePoint 2013 Connector]
 ////
@@ -44,9 +44,9 @@ Points to the docs.mulesoft pages for documentation on the functional aspects of
 === Features
 
 . Version 1.0 Supported Operations
-The Cisco Spark Connector 1.0 allows you to perform the following operations:
+The mailchimp Connector 1.0 allows you to perform the following operations:
 
-CiscoSpark Connector Operations +
+mailchimp Connector Operations +
 
 1. Get Campaigns +
 2. Get Campaign by Id +

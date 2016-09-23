@@ -4,7 +4,7 @@
 
 The MailChimp connector facilitates connections between Mule integration and MailChimp applications. The MailChimp connector  provides to see the list of campaigns,subscribers,templates and reports etc.
 
-*Release Notes:* link:/release-notes/MailChimpReleaseNotes.adoc[Link to Release Notes]
+*Release Notes:* link:/mailchimp-connector/doc/release-notes.adoc[Link to Release Notes]
 
 ////
 Note: existing MuleSoft documentation should be copied from right-hand column of link:https://github.com/mulesoft/mulesoft-docs/blob/master/links.csv. Links should always follow "link:"
@@ -143,13 +143,13 @@ Explain how to create this case with  Anypoint Studio  visual editor and XML edi
 ....
 [tab content goes here]
 Create a new project by clicking New > Mule Project >Project Name: MailchimpGetCampaigns.
-1. Drag an HTTP connector into sparkroomcreateapplication flow. Open the connector’s properties editor.
+1. Drag an HTTP connector into MailchimpGetCampaigns flow. Open the connector’s properties editor.
 2. Click on the + icon shown in the image below.
 image::httpProperties.jpg[]
 3. The Global Element Properties window of HTTP Listener Configuration opens. Enter 8081 for Port as shown below and click on 'Ok'.
 image::httpGlobalProperties.jpg[]
 4. The new flow is now reachable through the path http://localhost:8081 from the local system.
-5. Drag MailChimp connector into sparkroomcreateapplication flow.
+5. Drag MailChimp connector into MailchimpGetCampaigns flow.
 6. Configure the MailChimp connector according to the table below.
 
 |===
@@ -158,9 +158,7 @@ image::httpGlobalProperties.jpg[]
 |Connector Configuration	|select the global configuration created earlier.
 |Operation	|GetCampaigns
  |General	|Select Define Attributes:
-|			|Token  | OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80
-|			|count  | None
-			|apikey  | None
+
 |===
 
 7. Drag a Object to Json transformer to the flow.
@@ -174,7 +172,7 @@ image::httpGlobalProperties.jpg[]
 
 |===
 |Attribute|Value
-|name|Mailchimp__Configuration
+|name|MailChimp__Configuration
 |authorization|<Auth Token>
 |===
 2. Add a http:listener-config global element to you project +
@@ -189,13 +187,12 @@ image::httpGlobalProperties.jpg[]
 |port|8081
 |===
 
-4. Add a MailChimpConnector to your muleflow after the http endpoint according to the table below
-		<mailchimp:get-authorized-apps config-ref="Mailchimp__Configuration" token="OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80" doc:name="Mailchimp"/>
+4. Add a MailChimp Connector to your muleflow after the http endpoint according to the table below
+		<mailchimp:get-campaigns config-ref="Mailchimp__Configuration" token="c8fdd80cd9b36ebb948f356fcbd4bc80" doc:name="Mailchimp"/>
 |===
 |Attribute|Value
-|config-ref|Mailchimp__Configuration
+|config-ref|MailChimp__Configuration
 |operation|GetCampaigns
-|Token  | OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80
 |===
 
 5. Add a Object to Json transformer to your muleflow after the MailChimpConnector
@@ -204,28 +201,29 @@ image::httpGlobalProperties.jpg[]
 
 
 === Code Example
-
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mailchimp="http://www.mulesoft.org/schema/mule/mailchimp" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:spring="http://www.springframework.org/schema/beans" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+<mule xmlns:pager-duty="http://www.mulesoft.org/schema/mule/pager-duty" xmlns:papers-trail="http://www.mulesoft.org/schema/mule/papers-trail" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mailchimp="http://www.mulesoft.org/schema/mule/mailchimp" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+ xmlns:spring="http://www.springframework.org/schema/beans" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/mailchimp http://www.mulesoft.org/schema/mule/mailchimp/current/mule-mailchimp.xsd">
-    <mailchimp:config name="Mailchimp__Configuration" doc:name="Mailchimp: Configuration"/>
+http://www.mulesoft.org/schema/mule/mailchimp http://www.mulesoft.org/schema/mule/mailchimp/current/mule-mailchimp.xsd
+http://www.mulesoft.org/schema/mule/papers-trail http://www.mulesoft.org/schema/mule/papers-trail/current/mule-papers-trail.xsd
+http://www.mulesoft.org/schema/mule/pager-duty http://www.mulesoft.org/schema/mule/pager-duty/current/mule-pager-duty.xsd">
+    <mailchimp:config name="Mailchimp__Configuration" doc:name="Mailchimp: Configuration" authorization="OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80"/>
     <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+    <papers-trail:config name="PaperTrail__Configuration" doc:name="PaperTrail: Configuration" authorization="QVGQzJWKprXgA6wymoSu"/>
     <flow name="mailchimp-testFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP"/>
-        <mailchimp:get-campaigns config-ref="Mailchimp__Configuration" token="OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80" doc:name="Mailchimp" />
         <response>
             <json:object-to-json-transformer doc:name="Object to JSON"/>
         </response>
+        <mailchimp:get-campaigns config-ref="Mailchimp__Configuration" apiKey="f8c7587b3c257ffe76a3f7724bf42a70-us13" token="OAUTH c8fdd80cd9b36ebb948f356fcbd4bc80" doc:name="Mailchimp"/>
     </flow>
 </mule>
-
 
 
 ---
